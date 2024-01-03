@@ -1,0 +1,16 @@
+build:
+  gpu: true
+  cuda: "12.1"
+  python_version: "3.8"
+  system_packages:
+    - "libgl1-mesa-glx"
+    - "libglib2.0-0"
+  python_packages:
+
+
+    # - "timm==0.6.13"
+  run:
+    - pip install nougat-ocr
+
+
+predict: "predict.py:Predictor"
