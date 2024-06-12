@@ -2,7 +2,14 @@
 
 ## Overview
 
-In mathematical logic and proof verification, two main approaches are Lean formalization and human-style proofs. Here’s a brief overview:
+In mathematical logic and proof verification, two main approaches are Lean formalization and human-style proofs. 
+
+
+
+![image](https://github.com/jonas-kgomo/auto-lean-rudin/assets/25654848/23138e8a-7118-4c9b-ba6e-fc500066ddd3)
+
+
+Here’s a brief overview:
 
 ## Lean Formalization
 
@@ -27,7 +34,7 @@ begin
 end
 ```
 
-$let A := {(a,b) : ℕ | a+b = b+a}$
+Latex render may look like this: $ A := {(a,b) : ℕ | a+b = b+a}$
 
 
 # Combining Lean and Human-Style Proofs
