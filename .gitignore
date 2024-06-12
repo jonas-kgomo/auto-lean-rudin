@@ -4,3 +4,12 @@ nougat/special_tokens_map.json
 nougat/tokenizer_config.json
 nougat/tokenizer.json
 *.pyc
+
+nougat 
+
+node_modules
+
+package-lock.json
+
+input
+

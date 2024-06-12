@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Markdown Viewer</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex/dist/katex.min.css">
+   <!-- Include KaTeX for rendering LaTeX math expressions -->
+   <script src="https://cdn.jsdelivr.net/npm/katex/dist/katex.min.js"></script>
+   <!-- Include Auto-render extension for KaTeX (optional, for automatic rendering of math) -->
+   <script src="https://cdn.jsdelivr.net/npm/katex/dist/contrib/auto-render.min.js"></script>
+
+</head>
+<body>
+    <div id="el" class="container">
+  
+        <div class="left-card" id="markdown-content">
+            <!-- Markdown content will be loaded here -->
+        </div>
+        <div class="right-pane">
+            <div class="top-half" id="lean-proof">
+                <!-- Lean proof content will be displayed here -->
+                import data.real.basic
+                import data.rat.basic
+                
+                open_locale classical
+                
+                theorem archimedean_property (x y : ℝ) (hx : 0 < x) : ∃ n : ℕ, y < n * x :=
+                begin
+                  by_contra h,
+                  push_neg at h,
+                  let A := {n : ℕ | n * x ≤ y},
+                  have hA : ∀ n : ℕ, n ∈ A,
+                  { intro n, exact h n },
+                  obtain ⟨α, hαA, ⟨⟩⟩ : ∃ α, is_lub (λ n : ℕ, n * x) α,
+                  { exact real.exists_is_lub ⟨0, by norm_num⟩ },
+                 
+            </div>
+           <div>
+            let β := α - x,
+            have β_lt_α : β < α := sub_lt_self _ hx,
+            have hβ : ∃ n : ℕ, β < n * x := by simp [not_forall, β_lt_α, sub_eq_iff_eq_add, add_comm] at hαA; exact hαA,
+            obtain ⟨m, hβ⟩ := hβ,
+            have : α < (m + 1) * x,
+            { calc α = β + x        : by rw sub_add_cancel
+                  ... < m * x + x   : by { rw ← hβ, exact add_lt_add_right hβ x }
+                  ... = (m + 1) * x : by ring },
+            exact hαA this
+          end
+           </div> 
+            <div class="bottom-half" id="human-explanation">
+                <!-- Human explanation content will be displayed here -->
+               
+            </div>
+            <div>
+                Proof
+
+                **(a) Archimedean Property:**
+                1. Suppose for contradiction that there is no such positive integer \( n \). This means \( y \) is an upper bound for the set of \( nx \) where \( n \) runs through positive integers.
+                2. Let \(\alpha\) be the least upper bound (supremum) of this set.
+                3. Since \( x > 0 \), consider \( \alpha - x \), which is less than \( \alpha \).
+                4. By definition of supremum, \( \alpha - x \) should not be able to bound all \( nx \). Therefore, there must exist some \( m \) such that \( \alpha - x < mx \).
+                5. Adding \( x \) to both sides, we get \( \alpha < (m + 1)x \), which contradicts the fact that \(\alpha\) is an upper bound.
+                
+            </div>
+        </div>
+    </div>
+    <script>
+        renderMathInElement(document.body);
+    </script>
+    <!-- Include marked.js for Markdown parsing -->
+    <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+ 
+    <script src="script.js" type="module">
+        
+    </script>
+</body>
+</html>
