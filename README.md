@@ -25,11 +25,13 @@ theorem add_comm (a b : nat) : a + b = b + a :=
 begin
   exact nat.add_comm a b,
 end
+```
 
 $let A := {(a,b) : ℕ | a+b = b+a}$
 
 
 # Combining Lean and Human-Style Proofs
+
 Formalization of Human Proofs: Human-style proofs can be formalized in Lean to ensure correctness.
 Explanations for Formal Proofs: Formal proofs can be accompanied by human-readable explanations for better understanding.
 
